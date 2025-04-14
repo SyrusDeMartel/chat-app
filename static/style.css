@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+.chat-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 500px;
+}
+
+.chat-container h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#users {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+.msg {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: #e1f5fe;
+  border-radius: 6px;
+  word-wrap: break-word;
+}
+
+.typing {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.input-area {
+  display: flex;
+  gap: 5px;
+}
+
+.input-area input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.input-area button {
+  padding: 10px 16px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-area button:hover {
+  background: #2980b9;
+}
+
+.file-label {
+  display: inline-block;
+  background-color: #555;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark .chat-container {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark .chat-box {
+  background-color: #2a2a2a;
+  border-color: #333;
+}
+
+.dark .msg {
+  background-color: #333;
+  color: white;
+}
+
+.dark .input-area input[type="text"] {
+  background-color: #333;
+  color: white;
+  border: 1px solid #444;
+}
+
+.dark .input-area button {
+  background-color: #777;
+  color: #fff;
+}
+
+.dark .file-label {
+  background-color: #999;
+  color: #000;
+}
