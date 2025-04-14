@@ -13,6 +13,11 @@
     <h2>💬 Chat Room</h2>
     <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
 
+    <div id="users" class="user-list">
+      <h4>Active Users</h4>
+      <ul id="userList"></ul>
+    </div>
+
     <div id="messages" class="chat-box"></div>
     <div id="typing" class="typing-status"></div>
 
@@ -24,11 +29,32 @@
 
   <script>
     const socket = io();
-    const username = prompt("Enter your name:") || "Anonymous";
+    let username = "";
+    let isAdmin = false;
+
+    function askCredentials() {
+      const choice = prompt("Enter as:\n1. User/Guest\n2. Admin (type 'admin')");
+
+      if (choice.toLowerCase() === "admin") {
+        const pass = prompt("Enter admin password:");
+        if (pass === "iamadmin") {
+          username = prompt("Enter your name:") || "Admin";
+          username += " (admin)";
+          isAdmin = true;
+        } else {
+          alert("Wrong password. Entering as Guest.");
+          username = prompt("Enter your name:") || "Guest";
+        }
+      } else {
+        username = prompt("Enter your name:") || "Guest";
+      }
+    }
+
+    askCredentials();
     socket.emit("join", username);
 
     // Receive message
-    socket.on('message', function(msg) {
+    socket.on("message", function(msg) {
       const msgDiv = document.createElement("div");
       msgDiv.className = "msg";
       msgDiv.innerText = msg;
@@ -61,6 +87,33 @@
     // Dark mode
     document.getElementById("darkModeToggle").addEventListener("click", () => {
       document.body.classList.toggle("dark");
+    });
+
+    // Update user list
+    socket.on("update_users", (userList) => {
+      const listEl = document.getElementById("userList");
+      listEl.innerHTML = "";
+
+      userList.forEach((user) => {
+        const li = document.createElement("li");
+        li.textContent = user;
+
+        // Show Kick button if viewer is admin and the other user is not
+        if (isAdmin && !user.endsWith("(admin)")) {
+          const btn = document.createElement("button");
+          btn.textContent = "Kick";
+          btn.className = "kick-btn";
+          btn.onclick = () => socket.emit("kick_user", user);
+          li.appendChild(btn);
+        }
+
+        listEl.appendChild(li);
+      });
+    });
+
+    socket.on("kicked", function () {
+      alert("You have been kicked by admin.");
+      window.location.reload();
     });
   </script>
 
