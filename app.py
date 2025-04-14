@@ -39,22 +39,10 @@ def upload_file():
 
     return request.host_url + 'uploads/' + filename
 
-
-
-
-
-
 # Serve uploaded files
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-# Route to serve uploaded files
-# @app.route('/uploads/<filename>')
-# def uploaded_file(filename):
-#     return send_from_directory(os.path.join(app.root_path, 'uploads'), filename)
-
-
 
 
 # Socket events
@@ -97,7 +85,7 @@ def broadcast_message(msg):
 
 
 
-
-
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Use Render-provided PORT
+    socketio.run(app, host='0.0.0.0', port=port)
