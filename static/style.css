@@ -81,15 +81,6 @@ body {
   background: #2980b9;
 }
 
-.file-label {
-  display: inline-block;
-  background-color: #555;
-  color: white;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
 .dark {
   background-color: #121212;
   color: #ffffff;
@@ -119,9 +110,4 @@ body {
 .dark .input-area button {
   background-color: #777;
   color: #fff;
-}
-
-.dark .file-label {
-  background-color: #999;
-  color: #000;
 }
