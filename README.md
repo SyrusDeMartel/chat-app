@@ -1,36 +1,32 @@
-# 🔥 Real-Time Chat App
+# 💬 Real-Time Chat App
 
-A real-time chat application built with **Flask**, **Socket.IO**, and **HTML/CSS/JS**.
+A simple real-time chat application built with **Flask**, **Socket.IO**, and **HTML/CSS/JS**.
 
-## 🚀 Features
+## 🚀 Live Demo
 
-- Real-time message exchange 🔄
-- Emoji picker 😄
-- Typing status indicators ✍️
-- Join/Leave announcements 🟢🔴
-- Audio notification on new message 🔊
-- Dark Mode toggle 🌙
-- Active users list 👥
-- Chat history logging 🗂️
-- File/image upload support 📁
-- Clean, modern UI ✨
+👉 Use the chat app here: [https://chat-app-k55e.onrender.com](https://chat-app-k55e.onrender.com)
 
-## 🗂️ Project Structure
+## 📁 Features
 
+- Real-time messaging using WebSockets
+- File/image upload support
+- Emoji support
+- Typing indicators
+- Active users list
+- Dark mode support
+- Chat history log
 
-## ✅ Setup Instructions
+## 🛠 Tech Stack
 
-1. **Clone the repo:**
-git clone https://github.com/your-username/chat-app.git cd chat-app
+- Python + Flask
+- Flask-SocketIO
+- HTML + CSS + JS
+- Hosted on Render
 
-2. **Create a virtual environment:**
-python -m venv venv venv\Scripts\activate # On Windows
+## 🧠 How to Use
 
-3. **Install dependencies:**
-pip install -r requirements.txt
+1. Open the [live demo](https://chat-app-k55e.onrender.com) in any browser.
+2. Enter your name to join the chat.
+3. Start messaging, upload files, and have fun!
 
-4. **Run the app:**
-python app.py
-
-5. **Open in browser:**
-http://localhost:5000
+You can open the link in multiple tabs to simulate chatting between different users.

@@ -76,12 +76,41 @@ def handle_message(msg):
 def handle_typing(username):
     emit("show_typing", username, broadcast=True, include_self=False)
 
+
 def broadcast_message(msg):
     timestamp = datetime.datetime.now().strftime('%H:%M:%S')
     full_msg = f"[{timestamp}] {msg}"
-    with open("chat_history.txt", "a", encoding="utf-8") as f:
-        f.write(full_msg + "\n")
+    append_and_rotate_history(full_msg)
     send(full_msg, broadcast=True)
+
+@socketio.on('message')
+def handle_message(msg):
+    timestamp = datetime.datetime.now().strftime('%H:%M:%S')
+    full_msg = f"[{timestamp}] {msg}"
+    print(full_msg)
+    append_and_rotate_history(full_msg)
+    send(full_msg, broadcast=True)
+
+def append_and_rotate_history(new_line):
+    history_path = "chat_history.txt"
+
+    # Read existing lines (if file exists)
+    if os.path.exists(history_path):
+        with open(history_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+    else:
+        lines = []
+
+    # Append the new line
+    lines.append(new_line + "\n")
+
+    # Keep only the last 100 lines
+    lines = lines[-100:]
+
+    # Write back
+    with open(history_path, "w", encoding="utf-8") as f:
+        f.writelines(lines)
+
 
 
 
